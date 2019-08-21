@@ -74,6 +74,7 @@ public class DingTalkNotifier extends Notifier implements SimpleBuildStep {
 
     @Override
     public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath filePath, @Nonnull Launcher launcher, @Nonnull TaskListener taskListener) throws InterruptedException, IOException {
+        jenkinsUrl = jenkinsUrl == null ? "https://ci2.yitu-inc.com" : jenkinsUrl;
         jenkinsUrl = jenkinsUrl.endsWith("/") ? jenkinsUrl : jenkinsUrl + "/";
         List<OapiRobotSendRequest.Links> links = new ArrayList<>();
         links.add(generateJobLink(run));
@@ -106,7 +107,7 @@ public class DingTalkNotifier extends Notifier implements SimpleBuildStep {
     private OapiRobotSendRequest.Links generateStageLink(StageNodeExt stage, String url) {
         StringBuilder sb = new StringBuilder();
         String stageName = Util.generateHelixStageName(stage.getName());
-        sb.append("Stage:\t\t" + stageName + "\t\t");
+        sb.append("Stage:\t\t" + stageName + ",\t\t");
         sb.append("\n");
         sb.append("Duration:\t" + Util.convertMs2HourType(stage.getDurationMillis()));
         String title = sb.toString();
@@ -147,7 +148,7 @@ public class DingTalkNotifier extends Notifier implements SimpleBuildStep {
         return BuildStepMonitor.NONE;
     }
 
-    @Symbol("pipiDingTalk")
+    @Symbol("helixDingTalk")
     @Extension
     public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 

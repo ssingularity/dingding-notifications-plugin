@@ -4,17 +4,8 @@
         <f:textbox />
     </f:entry>
     <f:advanced>
-        <f:entry title="${%NotifyPeople}" field="notifyPeople">
+        <f:entry title="${%JenkinsUrl}" field="jenkinsUrl">
             <f:textbox />
         </f:entry>
-        <f:entry title="${%Message}" field="message">
-            <f:textbox />
-        </f:entry>
-                <f:entry title="${%ImageUrl}" field="imageUrl">
-                    <f:textbox />
-                </f:entry>
-                        <f:entry title="${%JenkinsUrl}" field="jenkinsUrl">
-                            <f:textbox />
-                        </f:entry>
     </f:advanced>
 </j:jelly>
